@@ -16,113 +16,24 @@ from urllib.parse import urlparse
 
 ROOT_DIR = Path(__file__).resolve().parent
 
-WRK_THREADS = 1
+WRK_THREADS = 4
 WRK_CONNECTIONS = 100
-WRK_DURATION = "60s"
+WRK_DURATION = "10s"
 WARMUP_DURATION = "3s"
 WAIT_TIMEOUT = 15.0
 OUTPUT_FILE = ROOT_DIR / "benchmark_results.json"
+FRAMEWORKS_FILE = ROOT_DIR / "framework.json"
 
-FRAMEWORKS = [
-    {
-        "name": "expressjs",
-        "language": "javascript",
-        "cwd": "javascript/expressjs",
-        "run": "node app.js",
-        "url": "http://127.0.0.1:3000/",
-    },
-    {
-        "name": "node",
-        "language": "javascript",
-        "cwd": "javascript/node",
-        "run": "node server.js",
-        "url": "http://127.0.0.1:3000/",
-    },
-    {
-        "name": "falcon_asgi",
-        "language": "python",
-        "cwd": "python/falcon_asgi",
-        "run": "./venv/bin/python -m uvicorn main:app",
-        "url": "http://127.0.0.1:8000/",
-    },
-    {
-        "name": "falcon_wsgi",
-        "language": "python",
-        "cwd": "python/falcon_wsgi",
-        "run": "./venv/bin/gunicorn main:app",
-        "url": "http://127.0.0.1:8000/",
-    },
-    {
-        "name": "fastapi",
-        "language": "python",
-        "cwd": "python/fastapi",
-        "run": "./venv/bin/python -m uvicorn app:app",
-        "url": "http://127.0.0.1:8000/",
-    },
-    {
-        "name": "flask",
-        "language": "python",
-        "cwd": "python/flask",
-        "run": "./venv/bin/gunicorn --bind 127.0.0.1:8000 main:app",
-        "url": "http://127.0.0.1:8000/",
-    },
-    {
-        "name": "tornado",
-        "language": "python",
-        "cwd": "python/tornado",
-        "run": "./venv/bin/python main.py",
-        "url": "http://127.0.0.1:8888/",
-    },
-    {
-        "name": "actix",
-        "language": "rust",
-        "cwd": "rust/actix",
-        "run": "./target/release/actix",
-        "url": "http://127.0.0.1:8080/",
-    },
-    {
-        "name": "axum",
-        "language": "rust",
-        "cwd": "rust/axum_",
-        "run": "./target/release/axum_",
-        "url": "http://127.0.0.1:3000/",
-    },
-    {
-        "name": "may_minihttp",
-        "language": "rust",
-        "cwd": "rust/may_minihttp_",
-        "run": "./target/release/may_minihttp_",
-        "url": "http://127.0.0.1:8080/",
-    },
-    {
-        "name": "rocket",
-        "language": "rust",
-        "cwd": "rust/rocket_",
-        "run": "./target/release/rocket_",
-        "url": "http://127.0.0.1:8000/",
-    },
-    {
-        "name": "bun",
-        "language": "typescript",
-        "cwd": "typescript/bun",
-        "run": "bun run index.ts",
-        "url": "http://127.0.0.1:3000/",
-    },
-    {
-        "name": "deno",
-        "language": "typescript",
-        "cwd": "typescript/deno",
-        "run": "deno run --allow-net main.ts",
-        "url": "http://127.0.0.1:3000/",
-    },
-    {
-        "name": "nestjs",
-        "language": "typescript",
-        "cwd": "typescript/nestjs",
-        "run": "npm run start",
-        "url": "http://127.0.0.1:3000/",
-    },
-]
+
+def load_frameworks() -> list[dict[str, Any]]:
+    grouped_frameworks = json.loads(FRAMEWORKS_FILE.read_text(encoding="utf-8"))
+    frameworks: list[dict[str, Any]] = []
+
+    for language, entries in grouped_frameworks.items():
+        for entry in entries:
+            frameworks.append({"language": language, **entry})
+
+    return frameworks
 
 
 def extract(pattern: str, text: str) -> str | None:
@@ -344,7 +255,7 @@ def main() -> int:
             "results": [],
         }
 
-        for framework in FRAMEWORKS:
+        for framework in load_frameworks():
             payload["results"].append(benchmark_framework(framework))
 
         OUTPUT_FILE.write_text(json.dumps(payload, indent=2) + os.linesep, encoding="utf-8")

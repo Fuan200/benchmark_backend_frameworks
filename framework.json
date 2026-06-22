@@ -1,0 +1,126 @@
+{
+  "go": [
+    {
+      "name": "chi",
+      "cwd": "go/chi",
+      "run": "./chi",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "echo",
+      "cwd": "go/echo",
+      "run": "./echo",
+      "url": "http://127.0.0.1:1323/"
+    },
+    {
+      "name": "fiber",
+      "cwd": "go/fiber",
+      "run": "./fiber",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "gin",
+      "cwd": "go/gin",
+      "run": "./gin",
+      "url": "http://127.0.0.1:8080/"
+    },
+    {
+      "name": "httprouter",
+      "cwd": "go/httprouter",
+      "run": "./httprouter",
+      "url": "http://127.0.0.1:8080/"
+    }
+  ],
+  "javascript": [
+    {
+      "name": "expressjs",
+      "cwd": "javascript/expressjs",
+      "run": "node app.js",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "node",
+      "cwd": "javascript/node",
+      "run": "node server.js",
+      "url": "http://127.0.0.1:3000/"
+    }
+  ],
+  "python": [
+    {
+      "name": "falcon_asgi",
+      "cwd": "python/falcon_asgi",
+      "run": "./venv/bin/python -m uvicorn main:app",
+      "url": "http://127.0.0.1:8000/"
+    },
+    {
+      "name": "falcon_wsgi",
+      "cwd": "python/falcon_wsgi",
+      "run": "./venv/bin/gunicorn main:app",
+      "url": "http://127.0.0.1:8000/"
+    },
+    {
+      "name": "fastapi",
+      "cwd": "python/fastapi",
+      "run": "./venv/bin/python -m uvicorn app:app",
+      "url": "http://127.0.0.1:8000/"
+    },
+    {
+      "name": "flask",
+      "cwd": "python/flask",
+      "run": "./venv/bin/gunicorn --bind 127.0.0.1:8000 main:app",
+      "url": "http://127.0.0.1:8000/"
+    },
+    {
+      "name": "tornado",
+      "cwd": "python/tornado",
+      "run": "./venv/bin/python main.py",
+      "url": "http://127.0.0.1:8888/"
+    }
+  ],
+  "rust": [
+    {
+      "name": "actix",
+      "cwd": "rust/actix",
+      "run": "./target/release/actix",
+      "url": "http://127.0.0.1:8080/"
+    },
+    {
+      "name": "axum",
+      "cwd": "rust/axum_",
+      "run": "./target/release/axum_",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "may_minihttp",
+      "cwd": "rust/may_minihttp_",
+      "run": "./target/release/may_minihttp_",
+      "url": "http://127.0.0.1:8080/"
+    },
+    {
+      "name": "rocket",
+      "cwd": "rust/rocket_",
+      "run": "./target/release/rocket_",
+      "url": "http://127.0.0.1:8000/"
+    }
+  ],
+  "typescript": [
+    {
+      "name": "bun",
+      "cwd": "typescript/bun",
+      "run": "bun run index.ts",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "deno",
+      "cwd": "typescript/deno",
+      "run": "deno run --allow-net main.ts",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
+      "name": "nestjs",
+      "cwd": "typescript/nestjs",
+      "run": "npm run start",
+      "url": "http://127.0.0.1:3000/"
+    }
+  ]
+}
