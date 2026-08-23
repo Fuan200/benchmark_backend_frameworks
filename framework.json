@@ -129,6 +129,12 @@
       "url": "http://127.0.0.1:3000/"
     },
     {
+      "name": "hono",
+      "cwd": "typescript/hono",
+      "run": "npm run start",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
       "name": "nestjs",
       "cwd": "typescript/nestjs",
       "run": "npm run start",
