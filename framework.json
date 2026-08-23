@@ -45,6 +45,12 @@
       "url": "http://127.0.0.1:3000/"
     },
     {
+      "name": "h3",
+      "cwd": "javascript/h3",
+      "run": "node app.js",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
       "name": "node",
       "cwd": "javascript/node",
       "run": "node server.js",
