@@ -123,6 +123,12 @@
       "url": "http://127.0.0.1:3000/"
     },
     {
+      "name": "elysia",
+      "cwd": "typescript/elysia",
+      "run": "bun run src/index.ts",
+      "url": "http://127.0.0.1:3000/"
+    },
+    {
       "name": "nestjs",
       "cwd": "typescript/nestjs",
       "run": "npm run start",
