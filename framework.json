@@ -25,6 +25,12 @@
       "url": "http://127.0.0.1:8080/"
     },
     {
+      "name": "go",
+      "cwd": "go/go",
+      "run": "./go",
+      "url": "http://127.0.0.1:8080/"
+    },
+    {
       "name": "httprouter",
       "cwd": "go/httprouter",
       "run": "./httprouter",
