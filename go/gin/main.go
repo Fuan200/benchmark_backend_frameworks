@@ -1,24 +1,24 @@
 package main
 
 import (
-  "net/http"
+	"net/http"
 
-  "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-  // Create a Gin router with default middleware (logger and recovery)
-  r := gin.Default()
+	// Create a Gin router with default middleware (logger and recovery)
+	r := gin.Default()
 
-  // Define a simple GET endpoint
-  r.GET("/", func(c *gin.Context) {
-    // Return JSON response
+	// Define a simple GET endpoint
+	r.GET("/", func(c *gin.Context) {
+		// Return JSON response
 		// c.JSON(http.StatusOK, gin.H{
 		//   "message": "pong",
 		// })
-	c.String(http.StatusOK, "Hello World!")
-  })
+		c.String(http.StatusOK, "Hello World!")
+	})
 
-  // Start server on port 8080 (default)
-  r.Run()
+	// Start server on port 8080 (default)
+	r.Run()
 }
